@@ -10,4 +10,10 @@ Handlebars.registerHelper('if_str_includes', function(a, b, opts) {
 	}
 });
 
+Handlebars.registerHelper('is_quote', function(a) {
+	//check to see if string starts wiht double quote
+	if (a[0] == '"') return true;
+	else return false;
+});
+
 CONFIG.ChatMessage.template = "modules/Improved-Chat-Template/template/chat-message.html"

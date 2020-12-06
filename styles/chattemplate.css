@@ -3,8 +3,21 @@
   font-weight: 100;
 }
 
+.quote {
+  font-family: "Lucida Console", Courier, monospace;
+  font-weight: 100;
+}
+
+.whisper {
+  background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(0,255,255,1), rgba(255,255,255,1)) !important;
+}
+
+.emote {
+  background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(200,0,0,.2), rgba(255,255,255,1)) !important;
+}
+
 .whisper .message-content {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .message-sender {
@@ -20,15 +33,16 @@
   text-decoration: none ;
 }
 
-.ic .message-content {
+.quote {
   font-family: "Bradley Hand", cursive;
   font-size: 120%;
   font-weight: 700;
 }
 
 .emote .message-content {
+  font-weight: bold;
   font-variant: small-caps;
   font-size: 160%;
-  font-weight: 700;
+  /* font-weight: 700; */
   font-family: Impact;
 }

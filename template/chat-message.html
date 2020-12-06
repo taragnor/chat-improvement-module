@@ -1,4 +1,4 @@
-<li class="message flexcol {{cssClass}}" data-message-id="{{message._id}}" {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
+<li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}" {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
     <header class="message-header flexrow">
 		<h4 class="message-sender">
 			{{alias}}
@@ -21,7 +21,7 @@
         <span class="flavor-text">{{{message.flavor}}}</span>
         {{/if}}
     </header>
-    <div class="message-content">
+	 <div class="message-content {{#if (is_quote message.content)}}quote{{/if}}">
         {{{message.content}}}
     </div>
 </li>
