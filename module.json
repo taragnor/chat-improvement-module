@@ -1,0 +1,15 @@
+{
+  "name": "Improved-Chat-Template",
+  "title": "Chat Template Improvement Test MOudle",
+  "description": "support for chat template",
+  "version": "0.0.4",
+  "author": "taragnor",
+  "scripts": ["./chattemplate.js"],
+  "styles": ["./styles/chattemplate.css"],
+  "packs": [],
+  "minimumCoreVersion": "0.6.2",
+  "compatibleCoreVersion": "0.7.0",
+  "url": "",
+  "manifest": "",
+  "download": ""
+}
