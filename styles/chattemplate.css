@@ -8,12 +8,24 @@
   font-weight: 100;
 }
 
-.whisper {
-  background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(0,255,255,1), rgba(255,255,255,1)) !important;
+@media (prefers-color-scheme: light) {
+  .whisper {
+	 background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(0,255,255,1), rgba(255,255,255,1)) !important;
+	 color: black !important;
+  }
+
+  .emote {
+	 background-image: linear-gradient(to right, rgba(255,255,255,.2), rgba(200,0,0,.3), rgba(255,255,255,.2)) !important;
+	 /* background-image: linear-gradient(to right, rgba(255,255,255,.5), rgba(200,0,0,.5), rgba(255,255,255,.5)) !important; */
+	 color: black !important;
+  }
 }
 
-.emote {
-  background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(200,0,0,.2), rgba(255,255,255,1)) !important;
+@media (prefers-color-scheme: dark) {
+
+  .whisper {
+	 color: black;
+  }
 }
 
 .whisper .message-content {
@@ -46,3 +58,78 @@
   /* font-weight: 700; */
   font-family: Impact;
 }
+
+.ghost-text {
+  transform: translate(-50%, -50%);
+  letter-spacing: .1rem;
+  line-height: 1.5rem;
+  padding: 2px;
+  font-size: 1.5rem;
+  animation: ghostshake 2.5s infinite;
+  font-family: "Ghost", Arial;
+  color: red;
+}
+
+@font-face {
+    font-family: "Ghost";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""), url("../font/shlop rg.ttf")
+}
+
+@keyframes ghostshake {
+  0% {
+	 transform: translate(0, 0) skew(0deg) scale(1, 1);
+	 filter: blur(0.1px);
+	 filter: sepia(.3);
+  }
+  10% {
+	 transform: translate(1px, 1px) skew(1deg) scale(0.99, 0.99);
+	 filter: blur(0.3px);
+	 filter: sepia(.5);
+  }
+  20% {
+	 transform: translate(-1px, 1px) skew(2deg) scale(1, 1);
+	 filter: blur(0.5px);
+	 filter: sepia(.7);
+  }
+  30% {
+	 transform: translate(1px, -1px) skew(-1deg) scale(1, 1);
+	 filter: blur(0.3px);
+	 filter: sepia(.5);
+  }
+  40% {
+	 transform: translate(-1px, -1px) skew(-2deg) scale(0.99, 1);
+	 filter: blur(0);
+	 filter: sepia(.3);
+  }
+  50% {
+	 transform: translate(1px, 1px) skew(1deg) scale(1, 0.99);
+	 filter: blur(0.2px);
+	 filter: sepia(.1);
+  }
+  60% {
+	 transform: translate(-1px, 1px) skew(2deg) scale(0.99, 0.99);
+	 filter: blur(0.1px);
+	 filter: sepia(.4);
+  }
+  70% {
+	 transform: translate(-1px, -1px) skew(0deg) scale(0.99, 1);
+	 filter: sepia(.7);
+	 filter: blur(.2px);
+  }
+  80% {
+	 transform: translate(1px, -1px) skew(1deg) scale(0.99, 0.99);
+	 filter: blur(0px);
+	 filter: sepia(.5);
+  }
+  90% {
+	 transform: translate(1px, 1px) skew(1deg) scale(1, 0.99);
+	 filter: sepia(.3);
+  }
+  100% {
+	 transform: translate(0, 0) skew(-1deg) scale(1, 1);
+	 filter: sepia(0);
+  }
+}
+

@@ -2,7 +2,7 @@
   "name": "Improved-Chat-Template",
   "title": "Chat Template Improvement Test MOudle",
   "description": "support for chat template",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "taragnor",
   "scripts": ["./chattemplate.js"],
   "styles": ["./styles/chattemplate.css"],
