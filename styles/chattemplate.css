@@ -64,7 +64,7 @@
   letter-spacing: .1rem;
   line-height: 1.5rem;
   padding: 2px;
-  font-size: 1.5rem;
+  font-size: 24pt;
   animation: ghostshake 2.5s infinite;
   font-family: "Ghost", Arial;
   color: red;
@@ -80,56 +80,56 @@
 @keyframes ghostshake {
   0% {
 	 transform: translate(0, 0) skew(0deg) scale(1, 1);
-	 filter: blur(0.1px);
-	 filter: sepia(.3);
+	 /* filter: blur(0.1px); */
+	 /* filter: sepia(.3); */
   }
   10% {
 	 transform: translate(1px, 1px) skew(1deg) scale(0.99, 0.99);
-	 filter: blur(0.3px);
-	 filter: sepia(.5);
+	 /* filter: blur(0.3px); */
+	 /* filter: sepia(.5); */
   }
   20% {
 	 transform: translate(-1px, 1px) skew(2deg) scale(1, 1);
-	 filter: blur(0.5px);
-	 filter: sepia(.7);
+	 /* filter: blur(0.5px); */
+	 /* filter: sepia(.7); */
   }
   30% {
-	 transform: translate(1px, -1px) skew(-1deg) scale(1, 1);
-	 filter: blur(0.3px);
-	 filter: sepia(.5);
+	 transform: translate(0px, -0px) skew(-1deg) scale(1, 1);
+	 /* filter: blur(0.3px); */
+	 /* filter: sepia(.5); */
   }
   40% {
 	 transform: translate(-1px, -1px) skew(-2deg) scale(0.99, 1);
-	 filter: blur(0);
-	 filter: sepia(.3);
+	 /* filter: blur(0); */
+	 /* filter: sepia(.3); */
   }
   50% {
-	 transform: translate(1px, 1px) skew(1deg) scale(1, 0.99);
-	 filter: blur(0.2px);
-	 filter: sepia(.1);
+	 transform: translate(0px, 0px) skew(1deg) scale(1, 0.99);
+	 /* filter: blur(0.2px); */
+	 /* filter: sepia(.1); */
   }
   60% {
 	 transform: translate(-1px, 1px) skew(2deg) scale(0.99, 0.99);
-	 filter: blur(0.1px);
-	 filter: sepia(.4);
+	 /* filter: blur(0.1px); */
+	 /* filter: sepia(.4); */
   }
   70% {
-	 transform: translate(-1px, -1px) skew(0deg) scale(0.99, 1);
-	 filter: sepia(.7);
-	 filter: blur(.2px);
+	 transform: translate(0px, 0px) skew(0deg) scale(0.99, 1);
+	 /* filter: sepia(.7); */
+	 /* filter: blur(.2px); */
   }
   80% {
 	 transform: translate(1px, -1px) skew(1deg) scale(0.99, 0.99);
-	 filter: blur(0px);
-	 filter: sepia(.5);
+	 /* filter: blur(0px); */
+	 /* filter: sepia(.5); */
   }
   90% {
-	 transform: translate(1px, 1px) skew(1deg) scale(1, 0.99);
-	 filter: sepia(.3);
+	 transform: translate(0px, 1px) skew(1deg) scale(1, 0.99);
+	 /* filter: sepia(.3); */
   }
   100% {
 	 transform: translate(0, 0) skew(-1deg) scale(1, 1);
-	 filter: sepia(0);
+	 /* filter: sepia(0); */
   }
 }
 

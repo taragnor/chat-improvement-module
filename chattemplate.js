@@ -22,8 +22,8 @@ Hooks.on("chatMessage", (x, message, chatData)=> {
 	console.log("Calling hook");
 	if (message.startsWith("/ghost")) {
 		const cls = ChatMessage.implementation;
-		const ghostmsg = message.substring(6);
-		message =`<div class="ghost-text" data-alttext="die">${ghostmsg}</div>`;
+		const ghostmsg = message.substring(6).trim();
+		message =`<div class="ghost-text" data-alttext="die">"${ghostmsg}"</div>`;
 
 		message = message.replace(/\n/g, "<br>");
 		chatData.content = message;
@@ -37,27 +37,50 @@ Hooks.on("chatMessage", (x, message, chatData)=> {
 });
 
 function ghostswap() {
+	const DEBUG_FACTOR = 100;
 	$(".ghost-text").each( async function () {
 		const origtext=  this.textContent
+		this.style.filter = "blur(1px)";
+		await ghostswap.stall(100);
+		this.style.filter = "blur(2px)";
+		await ghostswap.stall(100);
 		this.textContent = ghostswap.generateGhostAltText(origtext);
-		await ghostswap.stall(200);
+		this.style.filter = "blur(3px)";
+		await ghostswap.stall(100);
+		this.style.filter = "blur(2px)";
+		await ghostswap.stall(150);
+		this.style.filter = "blur(1px)";
+		await ghostswap.stall(350);
+		this.style.filter = "blur(2px)";
+		await ghostswap.stall(150);
+		this.style.filter = "blur(3px)";
+		await ghostswap.stall(100);
 		this.textContent = origtext;
+		this.style.filter = "blur(2px)";
+		await ghostswap.stall(150);
+		this.style.filter = "blur(1px)";
+		await ghostswap.stall(250);
+		this.style.filter = "blur(0.1px)";
 	});
-	setTimeout(ghostswap, 5000 + Math.random() * 30000);
+	setTimeout(ghostswap, 5000 + Math.random() * 150000 / DEBUG_FACTOR);
 }
 
 ghostswap.generateGhostAltText = function (origtext) {
-	const subtextlist = ["DEATHdieDEATH", "die", "THEEND", "FINALDESTINATION", "X", "VERYSOON"]
+	const subtextlist = ["DEATHdieDEATH", "DIE", "THEEND", "FINALDESTINATION", "VERYSOON"]
 		.filter( x=> x.length <= origtext.length) ?? "";
 	const subtext = subtextlist[Math.floor(Math.random() * subtextlist.length)];
 	const subtextlen = subtext.length;
+	const font = "normal 24pt Ghost";
+	const textwidth = ghostswap.getTextWidth(origtext, font);
 	let pos = 0;
 	let ret ="";
 	for (const letter of origtext) {
-		if (/\s/.test(letter))
+		if (/\s/.test(letter) || letter == '"')
 			ret += letter;
 		else
 			ret += subtext[ pos++ % subtextlen ];
+		if (ghostswap.getTextWidth(ret, font) >= textwidth)
+			break;
 	}
 	return ret;
 }
@@ -68,7 +91,16 @@ ghostswap.stall = function (time) {
 			});
 }
 
-ghostswap();
+ghostswap.getTextWidth = function (text, font) {
+	const canvas = ghostswap.getTextWidth.canvas || (ghostswap.getTextWidth.canvas = document.createElement("canvas"));
+	const context = canvas.getContext("2d");
+	context.font = font;
+	const metrics = context.measureText(text);
+	return metrics.width;
+}
+
+setTimeout(ghostswap, 5000 + Math.random() * 50000);
+
 
 
 
