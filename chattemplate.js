@@ -37,7 +37,7 @@ Hooks.on("chatMessage", (x, message, chatData)=> {
 });
 
 function ghostswap() {
-	const DEBUG_FACTOR = 100;
+	// const DEBUG_FACTOR = 100;
 	$(".ghost-text").each( async function () {
 		const origtext=  this.textContent
 		this.style.filter = "blur(1px)";
