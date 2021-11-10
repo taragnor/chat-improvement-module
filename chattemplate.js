@@ -19,7 +19,6 @@ Handlebars.registerHelper('is_quote', function(a) {
 CONFIG.ChatMessage.template = "modules/Improved-Chat-Template/template/chat-message.html"
 
 Hooks.on("chatMessage", (x, message, chatData)=> {
-	console.log("Calling hook");
 	if (message.startsWith("/ghost")) {
 		const cls = ChatMessage.implementation;
 		const ghostmsg = message.substring(6).trim();
@@ -27,7 +26,6 @@ Hooks.on("chatMessage", (x, message, chatData)=> {
 
 		message = message.replace(/\n/g, "<br>");
 		chatData.content = message;
-		console.log("Cancelling");
 		const createOptions = {};
 		cls.create(chatData, createOptions);
 		return false;
