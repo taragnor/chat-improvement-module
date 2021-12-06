@@ -16,7 +16,7 @@ Handlebars.registerHelper('is_quote', function(a) {
 	else return false;
 });
 
-CONFIG.ChatMessage.template = "modules/Improved-Chat-Template/template/chat-message.html"
+CONFIG.ChatMessage.template = "modules/taragnor-improved-chat/template/chat-message.html"
 
 Hooks.on("chatMessage", (x, message, chatData)=> {
 	if (message.startsWith("/ghost")) {

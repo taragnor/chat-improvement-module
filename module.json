@@ -1,15 +1,15 @@
 {
-  "name": "Improved-Chat-Template",
-  "title": "Chat Template Improvement Test MOudle",
+  "name": "taragnor-improved-chat",
+  "title": "Taragnor's Chat Template Improvement",
   "description": "support for chat template",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "taragnor",
-  "scripts": ["./chattemplate.js"],
+  "scripts": ["./module/chattemplate.js"],
   "styles": ["./styles/chattemplate.css"],
   "packs": [],
-  "minimumCoreVersion": "0.6.2",
-  "compatibleCoreVersion": "0.7.0",
-  "url": "",
-  "manifest": "",
-  "download": ""
+  "minimumCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.9",
+  "url": "https://github.com/taragnor/chat-improvement-module",
+  "manifest": "https://raw.githubusercontent.com/taragnor/chat-improvement-modulet/main/system.json",
+  "download": "https://github.com/taragnor/chat-improvement-module/archive/refs/tags/v.0.0.6.zip"
 }
