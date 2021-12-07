@@ -4,7 +4,7 @@
   "description": "support for chat template",
   "version": "0.0.6",
   "author": "taragnor",
-  "scripts": ["./module/chattemplate.js"],
+  "esmodules": ["./module/chattemplate.js"],
   "styles": ["./styles/chattemplate.css"],
   "packs": [],
   "minimumCoreVersion": "0.8.6",

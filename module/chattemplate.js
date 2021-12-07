@@ -1,5 +1,9 @@
 // Simple setup to make posted messages tell if they're blind rolls and whispers to make it more obvious
 
+import {TabbedChat} from "./tabbed-chat.js";
+
+TabbedChat.init();
+
 Handlebars.registerHelper('if_str_includes', function(a, b, opts) {
 	if (a.includes && a.includes(b)) {
 		return opts.fn(this);
@@ -99,6 +103,8 @@ ghostswap.getTextWidth = function (text, font) {
 }
 
 setTimeout(ghostswap, 5000 + Math.random() * 50000);
+
+
 
 
 
