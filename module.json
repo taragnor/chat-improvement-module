@@ -10,6 +10,6 @@
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "0.8.9",
   "url": "https://github.com/taragnor/chat-improvement-module",
-  "manifest": "https://raw.githubusercontent.com/taragnor/chat-improvement-modulet/main/system.json",
+  "manifest": "https://raw.githubusercontent.com/taragnor/chat-improvement-module/main/module.json",
   "download": "https://github.com/taragnor/chat-improvement-module/archive/refs/tags/v.0.0.6.zip"
 }
