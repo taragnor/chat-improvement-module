@@ -1,21 +1,26 @@
 export class TabbedChat {
 
+	static currentTab = "main";
+
 	static init() {
-		this.tabs = ["Main", "Other"];
+		this.tabs = ["Main", "1" , "2", "3", "4"];
 		Hooks.on("renderChatLog", this.renderTabs.bind(this));
+		Hooks.on("renderChatMessage", this.onRenderChatMessage.bind(this));
+		Hooks.on("createChatMessage", this.onCreateChatMessage.bind(this));
 	}
 
 	static async prependHTML(html) {
 		let toPrepend = '<nav class="tabbed-chat-log tabs">';
 		for (let tab of this.tabs) {
-			toPrepend += `<a class="item ic content" data-tab="${tab.toLowerCase()}">${tab}<i id="${tab.toLowerCase()}-notification" class="tab-notification fas fa-exclamation-circle"></i></a>`;
+			toPrepend += `<a class="item ic content" data-tab="${tab.toLowerCase()}">${tab}<i id="${tab.toLowerCase()}-notification" class="tab-notification fas fa-exclamation-circle" style="display: none;"></i></a>`;
 		}
-		toPrepend += "</nav>";
+		toPrepend += `</nav>`;
 		html.prepend(toPrepend);
 		return html;
 	}
 
 	static async renderTabs(chatLog, html, user) {
+		console.log("********Rendering Chat Tabs********");
 
 		if (this.tabs.length <= 0) return;
 		await this.prependHTML(html);
@@ -37,30 +42,82 @@ export class TabbedChat {
 			setTimeout(() => $(".item." + this.currentTab).addClass("active"), 100);
 		});
 
+		$("[data-tab=\"chat\"]").mousedown((event) => {
+			if (this.currentTab == "main" || this.currentTab == "create") return;
+			switch (event.which) {
+				case 1:  return;
+				case 2:  this.tabDelete(this.currentTab); return;
+				case 3:  this.tabRename(this.currentTab); return;
+			}
+		});
+		setTimeout(() => $(".item." + this.currentTab).addClass("active"), 100);
+		return true;
 	}
 
-	static async tabsCallback (event, html, tab) {
-		this.currentTab = tab;
-
-
-		// setClassVisibility($(".type0"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.OTHER));
-		// setClassVisibility($(".type1"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.OOC));
-		// setClassVisibility($(".type2").filter(".scenespecific"), false);
-		// setClassVisibility($(".type2").not(".scenespecific"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.IC));
-		// setClassVisibility($(".type2").filter(".scene" + game.user.viewedScene), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.IC));
-		// setClassVisibility($(".type3").filter(".scenespecific"), false);
-		// setClassVisibility($(".type3").not(".scenespecific"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.EMOTE));
-		// setClassVisibility($(".type3").filter(".scene" + game.user.viewedScene), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.EMOTE));
-		// setClassVisibility($(".type4"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.WHISPER));
-		// setClassVisibility($(".type5").filter(".scenespecific"), false);
-		// setClassVisibility($(".type5").filter(".gm-roll-hidden"), false);
-		// setClassVisibility($(".type5").filter(".scene" + game.user.viewedScene), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.ROLL));
-		// setClassVisibility($(".type5").not(".scenespecific").not(".gm-roll-hidden"), isMessageTypeVisible(CONST.CHAT_MESSAGE_TYPES.ROLL));
-
-		$("#" + tab + "-notification").hide();
-
-		$("#chat-log").scrollTop(9999999);
+static async tabsCallback (event, html, tab) {
+	if (tab == "create"){
+		return this.createTab("newtab");
+	} else {
 	}
+	this.currentTab = tab;
+	await this.updateVisibility();
+	$("#" + tab + "-notification").hide();
+	$("#chat-log").scrollTop(9999999);
+}
+
+static async updateVisibility() {
+	switch (this.currentTab) {
+		case "main":
+			this.setClassVisibility(`.chat-message.message`, true);
+			break;
+		default:
+			this.setClassVisibility(`.chat-message.message`, false);
+			this.setClassVisibility(`.chat-message.message.tabname-${this.currentTab}`, true);
+			break;
+	}
+
+}
+
+static setClassVisibility(cssSpecifier, visible = true) {
+	const cssClass = $(cssSpecifier);
+	if (visible) {
+		cssClass.removeClass("hardHide");
+		cssClass.show();
+	} else
+		cssClass.hide();
+}
+
+static async onCreateChatMessage(chatMessage) {
+	if (chatMessage.data.user == game.userId)
+		await chatMessage.setFlag("taragnor-improved-chat", "tab-location",  this.currentTab);
+	return true;
+}
+
+static async ensureTabExists (tabname) {
+	if (this.tabs.map(x=> x.toLowerCase()).includes(tabname))
+		return;
+	return await this.createTab(tabname);
+}
+
+static async createTab (tabname) {
+	this.tabs.push(tabname);
+	return await ui.chat.render(true);
+}
+
+
+static async onRenderChatMessage(chatMessage ,html, _message) {
+	const tab = chatMessage.getFlag("taragnor-improved-chat", "tab-location");
+	if (!tab) return true;
+	await this.ensureTabExists(tab);
+	html.addClass(`tabname-${tab}`);
+	html.find(".chat-message.message").addClass(`tabname-${tab}`);
+	if (this.currentTab != tab) {
+		$(`#${tab}-notification`).show();
+		setTimeout( () => this.updateVisibility(), 50);
+		return false;
+	}
+	return true;
+}
 
 } // end of class
 

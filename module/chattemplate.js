@@ -34,7 +34,7 @@ Hooks.on("chatMessage", (x, message, chatData)=> {
 		cls.create(chatData, createOptions);
 		return false;
 	} else {
-		console.log(msg.content);
+		return true;
 	}
 });
 
