@@ -143,6 +143,10 @@
     margin: 0 0 5px;
     border-bottom: 1px solid #ff6400;
     box-shadow: 0 0 10px red;
+	 font-size: 15pt;
+	 text-transform: uppercase;
+	 color: grey;
+	 /* height: 2rem; */
 }
 
 .tabbed-chat-log .item.active {
@@ -154,7 +158,7 @@
 }
 
 .tabbed-chat-log .item {
-    height: 18px;
+    height: max-content;
 }
 
 

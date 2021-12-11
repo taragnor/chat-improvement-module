@@ -104,7 +104,6 @@ static async createTab (tabname) {
 	return await ui.chat.render(true);
 }
 
-
 static async onRenderChatMessage(chatMessage ,html, _message) {
 	const tab = chatMessage.getFlag("taragnor-improved-chat", "tab-location");
 	if (!tab) return true;
